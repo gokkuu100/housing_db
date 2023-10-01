@@ -42,7 +42,6 @@ class User(db.Model):
 
     liked_houses = db.relationship('House', secondary='user_likes', back_populates='users')
 
-
 user_likes = db.Table('user_likes',
     db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
     db.Column('house_id', db.Integer, db.ForeignKey('houses.id'), primary_key=True)
