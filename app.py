@@ -7,7 +7,7 @@ from flask_migrate import Migrate
 from models import db, House, Agent, User
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///housing.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 app.config['SQALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
 
@@ -15,7 +15,6 @@ CORS(app)
 migrate = Migrate(app, db)
 db.init_app(app)
 
-api = Api(app)
 
 @app.route('/houses', methods=['GET', 'POST'])
 def allhouses():
