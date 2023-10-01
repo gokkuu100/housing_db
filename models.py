@@ -21,7 +21,6 @@ class House(db.Model):
     agent_id = db.Column(db.Integer, db.ForeignKey('agents.id'), nullable=False)
     agent = db.relationship('Agent', back_populates='houses')
 
-    
     users = db.relationship('User', secondary='user_likes', back_populates='liked_houses')
 
 class Agent(db.Model):
