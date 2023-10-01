@@ -1,10 +1,11 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy_serializer import SerializerMixin
 
 
 db = SQLAlchemy()
 
-class House(db.Model):
+class House(db.Model, SerializerMixin):
     __tablename__ = "houses"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -23,7 +24,7 @@ class House(db.Model):
 
     users = db.relationship('User', secondary='user_likes', back_populates='liked_houses')
 
-class Agent(db.Model):
+class Agent(db.Model, SerializerMixin):
     __tablename__ = "agents"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -32,7 +33,7 @@ class Agent(db.Model):
     phonebook = db.Column(db.String(255), nullable=False)  
     houses = db.relationship('House', back_populates='agent')
 
-class User(db.Model):
+class User(db.Model, SerializerMixin):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
