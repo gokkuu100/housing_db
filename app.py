@@ -33,7 +33,8 @@ class HousesResource(Resource):
                 "county": house.county
             }
             house_list.append(house_data)
-        return jsonify(house_list), 200
+        response_data=jsonify(house_list)
+        return make_response(response_data, 200)
 
     def post(self):
         data = request.get_json()
@@ -79,7 +80,8 @@ class HousesResource(Resource):
             "county": new_house.county
         }
 
-        return jsonify(house_data), 201
+        response_data=jsonify(house_data)
+        return make_response(response_data, 201)
 
 api.add_resource(HousesResource, '/houses')
 
@@ -103,7 +105,8 @@ class HouseByIDResource(Resource):
             'size': house.size,
             "county": house.county
         }
-        return jsonify(house_data), 200
+        response_data=jsonify(house_data)
+        return make_response(response_data, 201)
 
     def patch(self, id):
         house = House.query.filter_by(id=id).first()
@@ -125,17 +128,20 @@ class HouseByIDResource(Resource):
         house.county = data.get('county', house.county)
 
         db.session.commit()
-        return jsonify({"message": "House updated successfully"}), 200
+        response_data=jsonify({"message": "House updated successfully"})
+        return make_response(response_data, 201)
 
     def delete(self, id):
         house = House.query.filter_by(id=id).first()
 
         if not house:
-            return jsonify({"error": "House not found"}), 404
+            response_data=jsonify({"error": "House not found"})
+            return make_response(response_data, 400)
 
         db.session.delete(house)
         db.session.commit()
-        return jsonify({"message": "House deleted successfully"}), 200
+        response_data=jsonify({"message": "House deleted successfully"})
+        return make_response(response_data, 200)
 
 api.add_resource(HouseByIDResource, '/houses/<int:id>')
 
@@ -151,7 +157,8 @@ class AgentsResource(Resource):
                 'phonebook': agent.phonebook
             }
             agent_list.append(agent_data)
-        return jsonify(agent_list), 200
+        response_data=jsonify(agent_list)
+        return make_response(response_data, 200)
 
 api.add_resource(AgentsResource, '/agents')
 
@@ -160,7 +167,8 @@ class AgentByIDResource(Resource):
         agent = Agent.query.get(agent_id)
 
         if agent is None:
-            return jsonify({"error": "Agent not found"}), 404
+            response_data=jsonify({"error": "Agent not found"})
+            return make_response(response_data, 400)
 
         response_data = {
             'id': agent.id,
@@ -169,7 +177,8 @@ class AgentByIDResource(Resource):
             'phonebook': agent.phonebook,
         }
 
-        return jsonify(response_data), 200
+        response_data=jsonify(response_data)
+        return make_response(response_data, 200)
 
 api.add_resource(AgentByIDResource, '/agents/<int:agent_id>')
 
@@ -184,7 +193,8 @@ class UsersResource(Resource):
                 'phonebook': user.phonebook
             }
             user_list.append(user_data)
-        return jsonify(user_list), 200
+        response_data=jsonify(user_list)
+        return make_response(response_data, 200)
 
 api.add_resource(UsersResource, '/users')
 
@@ -193,7 +203,8 @@ class UserByIDResource(Resource):
         user = User.query.get(user_id)
 
         if user is None:
-            return jsonify({"error": "User not found"}), 404
+            response_data=jsonify({"error": "User not found"})
+            return make_response(response_data, 404)
 
         response_data = {
             'id': user.id,
@@ -201,7 +212,8 @@ class UserByIDResource(Resource):
             'phonebook': user.phonebook
         }
 
-        return jsonify(response_data), 200
+        response_data=jsonify(response_data)
+        return make_response(response_data, 200)
 
 api.add_resource(UserByIDResource, '/users/<int:user_id>')
 
