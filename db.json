@@ -1,0 +1,55 @@
+{
+    "houses": [
+      {
+        "id": 1,
+        "title": "Beautiful House",
+        "description": "A stunning house with a scenic view",
+        "price": 500000,
+        "area": "Lavington",
+        "county": "Nairobi",
+        "bedrooms": 3,
+        "bathrooms": 2,
+        "sqfeet": 2000,
+        "agent_id": 1,
+        "image_paths": ["house1.jpg", "house1-2.jpg"],
+        "created_at": "2023-09-30T10:00:00Z",
+        "updated_at": "2023-09-30T10:00:00Z"
+      },
+      {
+        "id": 2,
+        "title": "Cozy Cottage",
+        "description": "A cozy cottage in the woods",
+        "price": 300000,
+        "area": "Kilimani",
+        "county": "Nairobi",
+        "bedrooms": 2,
+        "bathrooms": 1,
+        "sqfeet": 1500,
+        "agent_id": 2,
+        "image_paths": ["cottage1.jpg"],
+        "created_at": "2023-09-30T11:00:00Z",
+        "updated_at": "2023-09-30T11:00:00Z"
+      }
+    ],
+    "agents": [
+      {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "phone": "123-456-7890",
+        "created_at": "2023-09-30T09:00:00Z",
+        "updated_at": "2023-09-30T09:00:00Z",
+        "houses": [1]
+      },
+      {
+        "id": 2,
+        "name": "Alice Johnson",
+        "email": "alice.j@example.com",
+        "phone": "987-654-3210",
+        "created_at": "2023-09-30T09:30:00Z",
+        "updated_at": "2023-09-30T09:30:00Z",
+        "houses": [2]
+      }
+    ]
+  }
+  
